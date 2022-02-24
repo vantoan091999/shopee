@@ -40,6 +40,41 @@
         }
 
     }
-  
+    public function show_category(){
+        $query ="SELECT *FROM tbl_category order by catId desc";
+        $result = $this->db->select($query);
+        
+        return $result;
+       }
+
+       public function getcatbyId($id)
+       {
+           $query = "SELECT*FROM tbl_category*where catId = '$id' ";
+           $result = $this->db->select($query);
+           var_dump($result);
+           return $result;
+           
+       }
+       public function update_catgory($catName,$id)
+       {
+        $catName = $this->fm->validation($catName);
+        $catName = mysqli_real_escape_string($this->db->link,$catName);
+        $id = mysqli_real_escape_string($this->db->link,$id);
+        if(empty($$catName) == ""){
+            $alert = " <span class =' error' >catgory must be not emty </span> ";
+            return $alert;
+        }else {
+            $query = " UPDATE tbl_category SET catName = '$catName' WHERE catid = '$id' ";
+            $result = $this->db->update($query);
+            if($result == true){
+                $alert = " <span class = 'success'>catgory update successfully<?span>";
+                return $alert;
+            }else{
+                $alert = " <span class ='error' > category update  not success  </span> ";
+                return $alert;
+            }
+           
+        }
+       }
   }
 ?>

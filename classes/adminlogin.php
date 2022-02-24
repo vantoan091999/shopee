@@ -28,12 +28,12 @@
             $alert = " user and Pass must be not empty";
             return $alert;
         }else {
-            echo 'b';
+            
             $query = " SELECT * FROM tbl_admin WHERE adminUser = '$adminUser' AND adminPass = '$adminPass' LIMIT 1";
             //$query = "SELECT * FROM tbl_admin WHERE 1=1";
             $result = $this->db->select($query);
             if($result != false){
-                echo 'a';
+               
                 $value = $result->fetch_assoc();//tìm hiểu 2 lệnh fetch_arrybà fetch_assoc;
                 //trong session thông báo là adminlogin bằng true là cho phiên đăng nhập này có tên là adminlogin  thì 
                 //ở bên session.php phải đổi sang adminlogin

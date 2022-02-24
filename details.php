@@ -1,4 +1,5 @@
 <?php
+
 	include 'include/footer.php';
 	include 'include/slider.php';
 ?>
@@ -18,7 +19,7 @@
 						<p>Brand:<span>Samsnumg</span></p>
 					</div>
 				<div class="add-cart">
-					<form action="cart.html" method="post">
+					<form action="cart.php" method="post">
 						<input type="number" class="buyfield" name="" value="1"/>
 						<input type="submit" class="buysubmit" name="submit" value="Buy Now"/>
 					</form>				
@@ -34,18 +35,18 @@
 				<div class="rightsidebar span_3_of_1">
 					<h2>CATEGORIES</h2>
 					<ul>
-				      <li><a href="productbycat.html">Mobile Phones</a></li>
-				      <li><a href="productbycat.html">Desktop</a></li>
-				      <li><a href="productbycat.html">Laptop</a></li>
-				      <li><a href="productbycat.html">Accessories</a></li>
-				      <li><a href="productbycat.html#">Software</a></li>
-					   <li><a href="productbycat.html">Sports & Fitness</a></li>
-					   <li><a href="productbycat.html">Footwear</a></li>
-					   <li><a href="productbycat.html">Jewellery</a></li>
-					   <li><a href="productbycat.html">Clothing</a></li>
-					   <li><a href="productbycat.html">Home Decor & Kitchen</a></li>
-					   <li><a href="productbycat.html">Beauty & Healthcare</a></li>
-					   <li><a href="productbycat.html">Toys, Kids & Babies</a></li>
+				      <li><a href="productbycat.php">Mobile Phones</a></li>
+				      <li><a href="productbycat.php">Desktop</a></li>
+				      <li><a href="productbycat.php">Laptop</a></li>
+				      <li><a href="productbycat.php">Accessories</a></li>
+				      <li><a href="productbycat.php#">Software</a></li>
+					   <li><a href="productbycat.php">Sports & Fitness</a></li>
+					   <li><a href="productbycat.php">Footwear</a></li>
+					   <li><a href="productbycat.php">Jewellery</a></li>
+					   <li><a href="productbycat.php">Clothing</a></li>
+					   <li><a href="productbycat.php">Home Decor & Kitchen</a></li>
+					   <li><a href="productbycat.php">Beauty & Healthcare</a></li>
+					   <li><a href="productbycat.php">Toys, Kids & Babies</a></li>
     				</ul>
     	
  				</div>
