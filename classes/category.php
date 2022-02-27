@@ -66,15 +66,30 @@
         }else {
             $query = " UPDATE tbl_category SET catName = '$catName' WHERE catid = '$id' ";
             $result = $this->db->update($query);
-            if($result == true){
+            if($result == true)
+            {
                 $alert = " <span class = 'success'>catgory update successfully<?span>";
                 return $alert;
-            }else{
+            }
+            else{
                 $alert = " <span class ='error' > category update  not success  </span> ";
                 return $alert;
             }
            
         }
        }
+       public function Fdel_category($id)
+       {
+        $query = "DELETE*FROM tbl_category*where catId = '$id' ";
+        $result = $this->db->delete($query);
+        if($result == true){
+            $alert = " <span class = 'success'>catgory delete successfully<?span>";
+            return $alert;
+        }else{
+            $alert = " <span class ='error' > category delete  not success  </span> ";
+            return $alert;
+        return $result; 
+       }
   }
+}
 ?>

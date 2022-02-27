@@ -1,34 +1,34 @@
 <?php include 'inc/header.php';?>
 <?php include 'inc/sidebar.php';?>
-<?php include '../classes/category.php'?>
+<?php include '../classes/brand.php'?>
 
 <?php
 
 	$cat = new category();
-	 if(isset($_GET['catid']) && $_GET('catid')==null ){
-        echo " <script> 'window.location = 'catlist.php'</script>";
+	 if(isset($_GET['brandID']) && $_GET('brandID')==null ){
+        echo " <script> 'window.location = 'brandlist.php'</script>";
      }else{
-         $id = $_GET['catid'];
+         $id = $_GET['brandID'];
      }
      if($_SERVER['REQUEST_METHOD'] == 'POST'){ //form đăng nhập dùng phương thức post gửi dữ liệu
-		$cateName = $_POST['catName'];
-        $updatecat = $cat-> update_catgory($catName,$id);
+		$cateName = $_POST['brandName'];
+        $updateBrand = $brand-> update_Brand($brandName,$id);
      }
 ?>
         <div class="grid_10">
             <div class="box round first grid">
-                <h2>Sửa danh mục </h2>
+                <h2>Sửa thương hiệu </h2>
                 
                <div class="block copyblock"> 
                <?php
-                    if( isset( $updatecat) ){
-                        echo  $updatecat;
+                    if( isset( $updatebrand) ){
+                        echo  $updatebrand;
                     }
                 ?>
                 <?php
-                    $get_cat_name = $cat->getcatbyId($id);
-                    if($get_cat_name){
-                        while($result = $get_cat_name->fetch_assoc()){
+                    $get_brand_name = $brand->getbrandbyId($id);
+                    if($get_brand_name){
+                        while($result = $get_brand_name->fetch_assoc()){
 
                        
                 ?>
@@ -36,7 +36,7 @@
                     <table class="form">					
                         <tr>
                             <td>
-                                <input type="text" value="<?php echo $result ['catName'];?>" name = 'catName' placeholder="Sửa danh mục sản phẩm.." class="medium" />
+                                <input type="text" value="<?php echo $result ['brandName'];?>" name = 'brandName' placeholder="Sửa thương hiệu sản phẩm.." class="medium" />
                             </td>
                         </tr>
 						<tr> 
