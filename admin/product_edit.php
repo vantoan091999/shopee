@@ -1,25 +1,38 @@
-﻿<?php include_once 'inc/header.php';?>
+<?php include_once 'inc/header.php';?>
 <?php include_once 'inc/sidebar.php';?>
  <?php  include_once '../classes/brand.php'?>   
 <?php include_once '../classes/category.php' ?>
 <?php include_once '../classes/product.php' ?>
 <?php
-	$pd = new  product();//tạo một biến mới bằng class bên file product.php đã tạo liên kết ở trên để gọi class
-	if($_SERVER['REQUEST_METHOD'] == 'POST'&& isset($_POST['submit'])) { //fform đăng nhập dùng phương thức post gửi dữ liệu
+	$pd = new  product();
+    if(!isset($_GET['productId'])||$_GET['productId'] == NULL){
+       echo " <script> 'window.location = 'productlist.php'</script>";
+    }else{
+       $id = $_GET['productId'];
+     
+    }
+	if($_SERVER['REQUEST_METHOD'] == 'POST'&& isset($_POST['submit'])) { 
 		
-		$insert_product = $pd->insert_product($_POST,$_FILES);
+		$update_product = $pd->update_product($_POST,$_FILES,$id);
 		
     }
+    
 ?>
 <div class="grid_10">
     <div class="box round first grid">
         <h2>Thêm sản phẩm</h2>
         <div class="block">
         <?php
-                    if( isset($insert_product) ){
-                        echo $insert_product;
+                    if( isset($update_product) ){
+                        echo $update_product;
                     }
-                ?>               
+                ?>        
+                <?php
+                $get_product_by_id = $pd->getproductbyid($id);
+                if($get_product_by_id){
+                    while($result_product = $get_product_by_id->fetch_assoc()){
+                
+                ?>       
          <form  method="post" enctype="multipart/form-data">
             <table class="form">
                
@@ -28,7 +41,7 @@
                         <label>Name</label>
                     </td>
                     <td>
-                        <input type="text" name = "productName" placeholder="Enter Product Name..." class="medium" />
+                        <input type="text" name = "productName" value="<?php echo $result_product['productName']?>" class="medium" />
                     </td>
                 </tr>
 				<tr>
@@ -43,9 +56,15 @@
                                 $catlist = $cat->show_category();
                                 if($catlist){
                                     $i = 0;
-                                    while($result = $catlist->fetch_assoc()){
+                                    while($result_cat = $catlist->fetch_assoc()){
                             ?>
-                            <option value="<?php echo $result['catId']?>"><?php echo $result['catName']?></option>
+                            <option
+                            <?php
+                            if($result_cat['catId'] == $result_product['catId']){
+                                echo "selected";}
+                            ?>
+                             value="<?php echo $result_cat['catId']?>"><?php echo $result_cat['catName']?></option>
+
                             <?php
                                     }
                                 }
@@ -64,9 +83,14 @@
                             $brand = new brand();
 							$brandlist = $brand->show_brand();
 							if($brandlist){
-								while($result = $brandlist->fetch_assoc()){
+								while($result_brand = $brandlist->fetch_assoc()){
 						?>
-                        <option value=" <?php echo $result['brandID']?>"><?php echo $result['brandName']?></option>
+                        <option
+                         <?php
+                        if($result_brand['brandID'] == $result_product['brandID']){
+                                echo "selected";}
+                         ?>
+                        value=" <?php echo $result_brand['brandID']?>"><?php echo $result_brand['brandName']?></option>
                         <?php
                                 }
                             }
@@ -80,7 +104,7 @@
                         <label>Description</label>
                     </td>
                     <td>
-                        <textarea name = "product_desc" class="tinymce"></textarea>
+                        <textarea name = "product_desc" class="tinymce" value=" <?php echo $result_product['product_desc']?>"></textarea>
                     </td>
                 </tr>
 				<tr>
@@ -88,7 +112,7 @@
                         <label>price</label>
                     </td>
                     <td>
-                        <input name = "price" type="text" placeholder="Enter price..." class="medium" />
+                        <input name = "price" type="text" value=" <?php echo $result_product['price']?>" class="medium" />
                     </td>
                 </tr>
                 
@@ -98,6 +122,7 @@
                         <label>Upload Image</label>
                     </td>
                     <td>
+                    <image src = "uploads/<?php echo $result_product['image']?> style = 'width: 20%;'"><br>
                         <input type="file"name = "image"/>
                     </td>
                 </tr>
@@ -109,8 +134,23 @@
                     <td>
                         <select id="select" name="type">
                             <option>Select Type</option>
-                            <option value="1">Featured</option>
+                            <?php
+                            if($result_product['type'] == 0){
+
+                            
+                            ?>
+                            <option selected value="1">Featured</option>
                             <option value="0">Non-Featured</option>
+                            <?php
+                            }else{
+                                
+                            ?>
+                            <option selected value="1">Featured</option>
+                            <option selected value="0">Non-Featured</option>
+                            <?php
+                            
+                            }
+                            ?>
                         </select>
                     </td>
                 </tr>
@@ -118,11 +158,15 @@
 				<tr>
                     <td></td>
                     <td>
-                        <input type="submit" name="submit" Value="Save"/>
+                        <input type="submit" name="submit" Value="update"/>
                     </td>
                 </tr>
             </table>
             </form>
+            <?php
+                    }
+                }
+            ?>
         </div>
     </div>
 </div>

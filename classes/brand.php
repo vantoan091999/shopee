@@ -1,7 +1,7 @@
 <?php 
 
-  include '../lib/database.php';
-  include '../helpers/format.php';
+  include_once '../lib/database.php';
+  include_once '../helpers/format.php';
 
 ?>
 <?php
@@ -23,14 +23,14 @@
         $brandName = mysqli_real_escape_string($this->db->link,$brandName);//$this->db->link dùng để liên kết dữ liệu ,$adminUser là dữ liệu
        
         //trường hợp ng dùng k nhập tên, mật khẩu 
-        if(empty($brandName == "") ){
+        if(empty($brandName) ){
             $alert = " <span class =' error' >Isert brand not success  </span> ";
             return $alert;
         }else {
             $query = "INSERT INTO tbl_brand(brandName) VALUES('$brandName') ";
-            $result = $this->db->select($query);
-            if($result == true){
-                $alert = " <span class = 'success'>Insert brand successfully<?span>";
+            $result = $this->db->insert($query);
+            if($result){
+                $alert = " <span class = 'success'>Insert brand successfully</span>";
                 return $alert;
             }else{
                 $alert = " <span class ='error' >Isert brand not success  </span> ";
@@ -41,7 +41,7 @@
 
     }
     public function show_brand(){
-        $query ="SELECT *FROM tbl_brand order by branhID desc";
+        $query ="SELECT * FROM tbl_brand order by brandID desc";
         $result = $this->db->select($query);
         
         return $result;
@@ -49,7 +49,7 @@
 
        public function getbrandbyId($id)
        {
-           $query = "SELECT*FROM tbl_brand*where brandID = '$id' ";
+           $query = "SELECT * FROM tbl_brand where brandID = '$id' ";
            $result = $this->db->select($query);
            return $result;
            
@@ -58,16 +58,15 @@
        {
         $brandName = $this->fm->validation($brandName);
         $brandName = mysqli_real_escape_string($this->db->link,$brandName);
-        $id = mysqli_real_escape_string($this->db->link,$id);
-        if(empty($brandName) == ""){
+        if(empty($brandName)){
             $alert = " <span class =' error' >brand must be not emty </span> ";
             return $alert;
         }else {
-            $query = " UPDATE tbl_brand SET catName = '$brandName' WHERE brandID = '$id' ";
+            $query = " UPDATE tbl_brand SET brandName = '$brandName' WHERE brandID = '$id' ";
             $result = $this->db->update($query);
-            if($result == true)
+            if($result)
             {
-                $alert = " <span class = 'success'>brand update successfully<?span>";
+                $alert = " <span class = 'success'>brand update successfully</pan>";
                 return $alert;
             }
             else{
@@ -79,15 +78,15 @@
        }
        public function del_brand($id)
        {
-        $query = "DELETE*FROM tbl_brand*where brandID = '$id' ";
+        $query = "DELETE FROM tbl_brand where brandID = '$id' ";
         $result = $this->db->delete($query);
-        if($result == true){
+        if($result){
             $alert = " <span class = 'success'>band delete successfully<?span>";
             return $alert;
         }else{
             $alert = " <span class ='error' > brand delete  not success  </span> ";
             return $alert;
-        return $result; 
+        
        }
   }
 }

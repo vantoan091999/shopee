@@ -1,21 +1,21 @@
 
-<?php include 'inc/header.php';?>
-<?php include 'inc/sidebar.php';?>
-<?php include '../classes/brand.php';?>
-<!-- <?php
+<?php include_once 'inc/header.php';?>
+<?php include_once 'inc/sidebar.php';?>
+<?php include_once '../classes/brand.php';?>
+ <?php
 	$brand = new brand();
 	if(isset($_GET['delid'])){
          $id = $_GET['delid'];
-		 $delbrad = $brand->del_brand($id);
+		 $delbrand = $brand->del_brand($id);
 	}
-?> -->
+?> 
         <div class="grid_10">
             <div class="box round first grid">
                 <h2>Brand List</h2>
                 <div class="block">  
 				<?php
-                    if( isset( $dellbrand) ){
-                        echo  $dellbrand;
+                    if( isset( $delbrand) ){
+                        echo  $delbrand;
                     }
                 ?>      
                     <table class="data display datatable" id="example">
@@ -38,8 +38,8 @@
 						<tr class="odd gradeX">
 							<td><?php  echo $i;?></td>
 							<td><?php echo $result['brandName'];?></td>
-							<td><a href="brandedit.php ?brandid = <?php echo $result['brandId']?>">Edit</a> || <aoclick = "return confirm(
-								'Are yout want to delete ?')" href="?delid = <?php echo $result['brandID']?>">Delete</a></td>
+							<td><a href="brandedit.php?brandID=<?php echo $result['brandID']?>">Edit</a> || <a onclick = "return confirm(
+								'Are yout want to delete ?')" href="?delid=<?php echo $result['brandID']?>">Delete</a></td>
 						</tr>
 						<?php 		
 					}

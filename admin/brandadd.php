@@ -1,7 +1,7 @@
-<?php include 'inc/header.php';?>
-<?php include 'inc/sidebar.php';?>
+<?php include_once 'inc/header.php';?>
+<?php include_once 'inc/sidebar.php';?>
 <?php
-    include '../classes/brand.php'
+    include_once '../classes/brand.php'
 ?>
 <?php
 	$brand = new brand();//tạo một biến mới bằng class bên file adminlogin.php đã tạo liên kết ở trên để gọi class
@@ -41,4 +41,4 @@
                 </div>
             </div>
         </div>
-<?php include 'inc/footer.php';?>
+<?php include 'inc/footer.php';?> 

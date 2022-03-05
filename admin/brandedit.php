@@ -1,20 +1,20 @@
-<?php include 'inc/header.php';?>
-<?php include 'inc/sidebar.php';?>
-<?php include '../classes/brand.php'?>
+<?php include_once 'inc/header.php';?>
+<?php include_once 'inc/sidebar.php';?>
+<?php include_once '../classes/brand.php'?>
 
 <?php
 
-	$cat = new category();
-	 if(isset($_GET['brandID']) && $_GET('brandID')==null ){
+	$brand = new brand();
+	 if(!isset($_GET['brandID']) || $_GET['brandID']==null){
         echo " <script> 'window.location = 'brandlist.php'</script>";
      }else{
          $id = $_GET['brandID'];
      }
      if($_SERVER['REQUEST_METHOD'] == 'POST'){ //form đăng nhập dùng phương thức post gửi dữ liệu
-		$cateName = $_POST['brandName'];
-        $updateBrand = $brand-> update_Brand($brandName,$id);
+		$brandName = $_POST['brandName'];
+        $updateBrand = $brand->update_brand($brandName,$id);
      }
-?>
+?> 
         <div class="grid_10">
             <div class="box round first grid">
                 <h2>Sửa thương hiệu </h2>
