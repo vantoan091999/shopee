@@ -1,6 +1,7 @@
 <?php 
-  include_once '../lib/database.php';
-  include_once '../helpers/format.php';
+ $filepath = realpath(__FILE__);
+  include_once ($filepath.'/../lib/database.php');
+  include_once ($filepath.'/../helpers/format.php');
 ?>
 <?php
   class category
