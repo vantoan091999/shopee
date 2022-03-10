@@ -1,7 +1,7 @@
 <?php 
-    $filepath = realpath(__FILE__);
+  $filepath = realpath(dirname(__FILE__));  
   include_once ( $filepath.'/../lib/database.php');
-  include_once ( $filepath.'/../helpers/format.php');
+  include_once ( $filepath .'/../helpers/format.php');
 ?>
 <?php
   class product
@@ -49,9 +49,7 @@
                 $alert = " <span class ='error' >Isert product not success  </span> ";
                 return $alert;
             }
-           
         }
-
     }
     public function show_product(){
         // cách 1
@@ -62,11 +60,9 @@
          order by tbl_product.productId desc";
 
         // cách 2
-
         // $query ="SELECT *FROM tbl_product order by productId desc";
 
         //cách 3
-
         // $query ="SELECT p.*,c.catName,b.brandName
         //  From tbl_product AS p,tbl_category AS c,tbl_brand AS b WHERE p.catId = c.catId
         //  AND p.brandID = b.brandID
@@ -79,8 +75,7 @@
        {
            $query = "SELECT * FROM tbl_product where productId = '$id'";
            $result = $this->db->select($query);
-           return $result;
-           
+           return $result; 
        }
        public function update_product($data,$file,$id)
        {
@@ -108,7 +103,7 @@
 
          if($productName == "" || $brand == "" || $category == "" || $product_desc == "" || $type == "" || $price == ""  )
          {
-            $alert = " <span class ='error' >fiels must be not empty  </span> ";
+            $alert = " <span class ='error'>fiels must be not empty  </span> ";
             return $alert;
          }else
          { //nếu các giá trị khác rỗng thì chạy tiếp cái else
@@ -126,25 +121,16 @@
                     return $alert;
                     }
                     $query = " UPDATE tbl_product SET 
-                    productName = '$productName',
-                    brandID = '$brand',
-                    catId = '$category',
-                    type = '$type',
-                    price = '$price',
-                    image = '$unique_image',
+                    productName = '$productName',brandID = '$brand',catId = '$category',
+                    type = '$type',price = '$price',image = '$unique_image',
                     product_desc = '$product_desc' WHERE productId = '$id' ";
                     //câu query(truy vấn) này sẽ được thực thi nếu người dùng đã nhập ảnh và ảnh đúng chuẩn
                 }
          else{
              //nếu người dùng không chọn ảnh thì câu query sẽ không có trường image. tức là ko up image vào database
-            $query = " UPDATE tbl_product SET 
-            productName = '$productName',
-            brandID ='$brand',
-            catId = '$category',
-            type = '$type',
-            price = '$price',
-            product_desc ='$product_desc' WHERE productId = '$id' ";
-
+            $query = " UPDATE tbl_product SET productName = '$productName',
+            brandID ='$brand',catId = '$category',type = '$type',
+            price = '$price',product_desc ='$product_desc' WHERE productId = '$id' ";
             }
             // $query sẽ nhận lấy 1 giá trị duy nhất ở bên trên vì chỉ có 2 trường hợp xảy ra
             $result = $this->db->update($query);
@@ -157,9 +143,8 @@
                 $alert = " <span class ='error' > product update  not success  </span> ";
                 return $alert;
             }
-        
         }
-       }
+    }
        public function del_product($id)
        {
         $query = "DELETE FROM tbl_product where productId = '$id' ";
@@ -170,16 +155,15 @@
         }else{
             $alert = " <span style = 'color:red ' class ='error' > product delete  not success  </span> ";
             return $alert;
-        
        }
     }
     //END BACKend
-    public function getproduct_feathered(){
+    public function getproduct_feathered()
+    {
         $query = "SELECT * FROM tbl_product where type = '0'";
            $result = $this->db->select($query);
            return $result;
     }
-    
     public function getproduct_new()
     {
         $query = "SELECT * FROM tbl_product ORDER BY productId DESC LIMIT 4" ;
@@ -192,8 +176,8 @@
         From tbl_product INNER JOIN tbl_category on tbl_product.catId = tbl_category.catId
         INNER JOIN tbl_brand on tbl_product.brandID = tbl_brand.brandID
          WHERE tbl_product.productId = '$id'";
-          $result = $this->db->select($query);
-          return $result;
+        $result = $this->db->select($query);
+        return $result;
     }
 }
 ?>

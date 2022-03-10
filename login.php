@@ -1,5 +1,5 @@
 <?php
-	include 'include/footer.php';
+	include 'include/header.php';
 	include 'include/slider.php';
 ?>
  <div class="main">
@@ -152,4 +152,6 @@
     <a href="#" id="toTop" style="display: block;"><span id="toTopHover" style="opacity: 1;"></span></a>
 </body>
 </html>
-
+<?php
+	include 'include/footer.php';
+?>

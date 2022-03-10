@@ -4,10 +4,10 @@
 <?php include_once '../classes/category.php' ?>
 <?php include_once '../classes/product.php' ?>
 <?php
-	$pd = new  product();//tạo một biến mới bằng class bên file product.php đã tạo liên kết ở trên để gọi class
+	$product = new  product();//tạo một biến mới bằng class bên file product.php đã tạo liên kết ở trên để gọi class
 	if($_SERVER['REQUEST_METHOD'] == 'POST'&& isset($_POST['submit'])) { //fform đăng nhập dùng phương thức post gửi dữ liệu
 		
-		$insert_product = $pd->insert_product($_POST,$_FILES);
+		$insert_product = $product->insert_product($_POST,$_FILES);
 		
     }
 ?>

@@ -4,7 +4,7 @@
 <?php include_once '../classes/category.php' ?>
 <?php include_once '../classes/product.php' ?>
 <?php
-	$pd = new  product();
+	$product = new  product();
     if(!isset($_GET['productId'])||$_GET['productId'] == NULL){
        echo " <script> 'window.location = 'productlist.php'</script>";
     }else{
@@ -13,7 +13,7 @@
     }
 	if($_SERVER['REQUEST_METHOD'] == 'POST'&& isset($_POST['submit'])) { 
 		
-		$update_product = $pd->update_product($_POST,$_FILES,$id);
+		$update_product = $product->update_product($_POST,$_FILES,$id);
 		
     }
     
@@ -28,7 +28,7 @@
                     }
                 ?>        
                 <?php
-                $get_product_by_id = $pd->getproductbyid($id);
+                $get_product_by_id = $product->getproductbyid($id);
                 if($get_product_by_id){
                     while($result_product = $get_product_by_id->fetch_assoc()){
                 

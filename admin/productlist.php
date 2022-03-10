@@ -6,10 +6,10 @@
 <?php include_once '../helpers/format.php' ?>
 <?php 
 	$fm = new Format();
-	$pd = new product();
+	$product = new product();
 	if(isset($_GET['productId'])){
 		$id = $_GET['peoductId'];
-		$delpd = $pd->del_product($id);
+		$delpd = $product->del_product($id);
    }
    ?>
 
@@ -35,10 +35,10 @@
 				<?php
 				
 				
-				$pdlist = $pd->show_product();
-				if($pdlist){
+				$productlist = $product->show_product();
+				if($productlist){
 					$i= 0;
-					while($result = $pdlist->fetch_assoc()){
+					while($result = $productlist->fetch_assoc()){
 						$i++;
 				?>
 				<tr class="odd gradeX">

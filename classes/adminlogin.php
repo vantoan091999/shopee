@@ -1,10 +1,9 @@
 <?php 
- $filepath = realpath(__FILE__); 
-  include ($filepath.'/../lib/session.php');
+ $filepath = realpath(dirname(__FILE__)); 
+  include_once ($filepath.'/../lib/session.php');
   session::checkLogin();
-  include ($filepath.'/../lib/database.php');
-  include ($filepath.'/../helpers/format.php');
-
+  include_once ($filepath.'/../lib/database.php');
+  include_once ($filepath.'/../helpers/format.php');
 ?>
 <?php
   class Adminlogin
@@ -48,8 +47,6 @@
                 return $alert;
             }
         }
-
-    }
-  
+    } 
   }
 ?>
